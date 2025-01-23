@@ -112,6 +112,7 @@ A comprehensive admin dashboard built for TableSprint's Job Hackathon 2024. This
 ![Uploading Screenshot 2025-01-23 195358.png…]()
 
 
+
 ## 📋 Prerequisites
 - Node.js (v14 or higher)
 - MySQL
