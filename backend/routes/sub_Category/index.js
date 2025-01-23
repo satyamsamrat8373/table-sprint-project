@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const mysql = require('mysql2/promise');
-const VerifyUser = require("../../middleware/auth")
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -12,7 +11,7 @@ const pool = mysql.createPool({
 });
 
 
-router.get("/sub_Category", VerifyUser,async (req, res) => {
+router.get("/sub_Category", async (req, res) => {
     try {
         const { q } = req.query; // Get the search query from the request
         let rows;
@@ -34,7 +33,7 @@ router.get("/sub_Category", VerifyUser,async (req, res) => {
         console.error(error);
         res.status(500).send({ error: true, message: "Internal Server Error" });
     }
-}).post("/sub_Category/new", VerifyUser,async (req, res) => {
+}).post("/sub_Category/new", async (req, res) => {
     console.log("body0",req.body);
     
     const {sub_Category_name,name,image} = req.body;
@@ -44,7 +43,7 @@ router.get("/sub_Category", VerifyUser,async (req, res) => {
     await pool.query("INSERT INTO Sub_Category (sub_category_name,Category_name, Image,Status) VALUES (?,?, ?,?)", [sub_Category_name,name, image,"INACTIVE"]);
 
     res.send({ error: false, message: "Sub_Category Created" });
-}).patch("/sub_Category/:id",VerifyUser, async (req, res) => {
+}).patch("/sub_Category/:id", async (req, res) => {
     const { id } = req.params; // Get the Sub_category ID from the URL params
     const payload = req.body; // Get the update payload from the request body
 
@@ -80,7 +79,7 @@ router.get("/sub_Category", VerifyUser,async (req, res) => {
         console.error(error);
         res.status(500).send({ error: true, message: "Internal Server Error" });
     }
-}).delete("/sub_Category/:id",VerifyUser, async (req, res) => {
+}).delete("/sub_Category/:id", async (req, res) => {
     const { id } = req.params; // Extract the category ID from the request parameters
 
     try {

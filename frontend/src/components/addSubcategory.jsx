@@ -55,8 +55,8 @@ const AddSubCategory = () => {
         'Authorization': `${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        Category_name: formData.categoryName,
-        sub_category_name: formData.subCategoryName,
+        name: formData.categoryName,
+        sub_Category_name: formData.subCategoryName,
         sequence: formData.sequence,
         image: formData.image
       }),

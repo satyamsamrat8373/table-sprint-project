@@ -9,7 +9,7 @@ const AddCategory = () => {
   const [formData, setFormData] = useState({
     name: '',
     sequence: '',
-    image: null
+    image: ''
   });
   const [previewImage, setPreviewImage] = useState(null);
 
@@ -171,5 +171,3 @@ const AddCategory = () => {
 };
 
 export default AddCategory;
-
-
