@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import Header from './components/header'
 import Sidebar from './components/sidebar'
 import Login from './components/login'
-import Forgot from './components/register'
+import Register from './components/register'
 import Home from './components/Home'
 import Category from './components/category'
 import AddCategory from './components/addCategory'
@@ -23,7 +23,7 @@ function App() {
       {/* Only show Header and Sidebar if not on login/register routes */}
       <Routes>
         <Route path='/' element={<Login />}/>
-        <Route path='/sign-up' element={<Forgot />}/>
+        <Route path='/sign-up' element={<Register />}/>
         <Route path='*' element={
           <Protected>
             <>

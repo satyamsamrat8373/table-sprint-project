@@ -20,7 +20,7 @@ router.get("/category", async (req, res) => {
             // If a search query is provided, filter the results
             [rows] = await pool.query(
                 "SELECT * FROM Category WHERE Category_name LIKE ?", 
-                [`%${q}%`] // Use wildcards for partial matching
+                [`%${q}%`] 
             );
         } else {
             // If no search query, return all rows

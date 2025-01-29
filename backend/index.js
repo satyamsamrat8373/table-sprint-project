@@ -1,3 +1,4 @@
+// Require is a built-in function used to import modules or other JavaScript files into your project.
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -10,8 +11,8 @@ const categoryRoutespro = require("./routes/product")
 const VerifyUser = require('./middleware/auth')
 
 // Add cors middleware before other middleware
+//Cross-Origin Resource Sharing
 app.use(cors());
-
 app.use(express.json());
 
 // Create MySQL Connection Pool
@@ -85,7 +86,7 @@ app.post("/auth/login", async (req, res) => {
     console.error(err);
     res.status(500).send({ error: true, message: "Internal Server Error" });
   }
-});
+}); 
 
 // Get User Data
 app.get("/user", VerifyUser, async (req, res) => {
@@ -105,7 +106,7 @@ app.get("/user", VerifyUser, async (req, res) => {
   }
 });
 
-// Middleware to Verify User
+
 
 
 // Start the server

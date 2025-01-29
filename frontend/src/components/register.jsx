@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -33,6 +36,28 @@ const Register = () => {
     }
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/auth/forgot-password", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        // toast.success("Password reset link sent to your email!");
+        setIsForgotPassword(false);
+      } else {
+        // toast.error(data.message || "Something went wrong!");
+      }
+    } catch (error) {
+      // toast.error("Something went wrong!");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-purple-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
@@ -54,48 +79,70 @@ const Register = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="sr-only">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
+        {!isForgotPassword ? (
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="email" className="sr-only">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+              </div>
 
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
+              <div>
+                <label htmlFor="password" className="sr-only">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  required
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              <button
+                type="submit"
+                className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              >
+                Create Account
+              </button>
+
+              <div className="text-center">
+                <a href="/" className="text-sm text-purple-600 hover:text-purple-500">
+                  Already have an account? Log in
+                </a>
+              </div>
+
+            
+            </div>
+          </form>
+        ) : (
+          <form onSubmit={handleForgotPassword}>
+            <h2>Forgot Password</h2>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button type="submit">Send Reset Link</button>
+            <span 
+              onClick={() => setIsForgotPassword(false)}
+              style={{ cursor: "pointer" }}
             >
-              Create Account
-            </button>
-
-            <div className="text-center">
-              <a href="/" className="text-sm text-purple-600 hover:text-purple-500">
-                Already have an account? Log in
-              </a>
-            </div>
-          </div>
-        </form>
+              Back to Register
+            </span>
+          </form>
+        )}
       </div>
     </div>
   );
