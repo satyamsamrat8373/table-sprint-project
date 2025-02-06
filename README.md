@@ -13,7 +13,18 @@ A comprehensive admin dashboard built for TableSprint's Job Hackathon 2024. This
 
 -----> Login Page
 
-![Screenshot 2025-01-23 194140](https://github.com/user-attachments/assets/8fe1bcd9-5797-443f-bc18-30e5824ee0b4)
+![Screenshot 2025-01-23 194140](https://github.com/user-attachments/assets/8fe1bcd9-5797-443f-bc18-30e5824ee0b4) 
+
+
+------> New Register/ Sign UP
+
+![Screenshot 2025-02-06 174325](https://github.com/user-attachments/assets/dd43fd25-0494-4002-bdf5-2ccc426e3182)
+
+
+------> LogOut
+
+![Screenshot 2025-02-06 174349](https://github.com/user-attachments/assets/b32c3e24-3d28-4181-b7b1-e6a85d39626f)
+
 
 --->Dashboard
 
@@ -109,7 +120,8 @@ A comprehensive admin dashboard built for TableSprint's Job Hackathon 2024. This
  
 ------> All Database Tables
 
-![Uploading Screenshot 2025-01-23 195358.png…]()
+![Screenshot 2025-01-23 195358](https://github.com/user-attachments/assets/b42ab0cc-9f63-452a-9476-e39ad4a5e9bf)
+
 
 
 
